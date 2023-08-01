@@ -2,12 +2,6 @@ on: ['push']
 
 name: Test Coveralls
 
-inputs:
-  github-token:
-    description: 'Put secrets.GITHUB_TOKEN here'
-    required: false
-    default: ${{ github.token }}
-
 jobs:
   build:
     name: Build
@@ -27,3 +21,5 @@ jobs:
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
