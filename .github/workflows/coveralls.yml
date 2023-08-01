@@ -2,6 +2,12 @@ on: ['push']
 
 name: Test Coveralls
 
+inputs:
+  github-token:
+    description: 'Put secrets.GITHUB_TOKEN here'
+    required: false
+    default: ${{ github.token }}
+
 jobs:
   build:
     name: Build
@@ -17,7 +23,7 @@ jobs:
       - name: Install and run coveralls command
         run: |
           npm install
-          npm run test:coveralls
+          npm run test:cov
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
