@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AbstractUseCase } from './controller.abstraction';
+import { SaveUserController } from './save-user.controller';
+import { SaveUserService } from './save-user.service';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [SaveUserController],
+  providers: [{ provide: AbstractUseCase, useClass: SaveUserService }],
 })
 export class AppModule {}
