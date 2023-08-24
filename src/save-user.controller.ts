@@ -5,13 +5,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import {
-  AbstractControllerWithUseCase,
-  AbstractUseCase,
-} from './controller.abstraction';
-import { SaveUserCommand, TUser } from './save-user.command';
+import { AbstractControllerWithUseCase } from './controller.abstraction';
+import { TUser } from './save-user.command';
 import { SaveUserRequest } from './save-user.request';
-import { SaveUserServiceOutput } from './save-user.service';
+import {
+  AbstractSaveUserUseCase,
+  SaveUserServiceOutput,
+} from './save-user.use-case';
 
 type Output = SaveUserServiceOutput;
 
@@ -20,12 +20,7 @@ export class SaveUserController extends AbstractControllerWithUseCase<
   TUser,
   Output
 > {
-  constructor(
-    protected readonly useCase: AbstractUseCase<
-      SaveUserCommand,
-      SaveUserServiceOutput
-    >,
-  ) {
+  constructor(protected readonly useCase: AbstractSaveUserUseCase) {
     super();
   }
 

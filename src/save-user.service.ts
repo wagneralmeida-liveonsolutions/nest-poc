@@ -1,18 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { AbstractUseCase } from './controller.abstraction';
 import { SaveUserCommand } from './save-user.command';
-
-export type SaveUserServiceOutput = {
-  name: string;
-  id: string;
-  createdEmail: string;
-};
+import {
+  AbstractSaveUserUseCase,
+  SaveUserServiceOutput,
+} from './save-user.use-case';
 
 @Injectable()
-export class SaveUserService extends AbstractUseCase<
-  SaveUserCommand,
-  SaveUserServiceOutput
-> {
+export class SaveUserService extends AbstractSaveUserUseCase {
   async execute(input: SaveUserCommand): Promise<SaveUserServiceOutput> {
     return {
       id: '123',
