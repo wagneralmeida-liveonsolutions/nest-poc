@@ -27,3 +27,9 @@ export abstract class AbstractControllerWithUseCase<Input, Output>
     return await this.useCase.execute(await input.toCommand());
   }
 }
+
+export abstract class AbstractController<Input, Output>
+  implements IController<Input, Output>
+{
+  abstract execute(input: IRequest<Input>): Promise<Output>;
+}

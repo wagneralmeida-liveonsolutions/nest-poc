@@ -13,12 +13,12 @@ import {
   SaveUserServiceOutput,
 } from './save-user.use-case';
 
-type Output = SaveUserServiceOutput;
+type Output = SaveUserServiceOutput & { newValue: number };
 
 @Controller('save-user')
 export class SaveUserController extends AbstractControllerWithUseCase<
   TUser,
-  Output
+  SaveUserServiceOutput
 > {
   constructor(protected readonly useCase: AbstractSaveUserUseCase) {
     super();
@@ -28,6 +28,7 @@ export class SaveUserController extends AbstractControllerWithUseCase<
   @UsePipes(new ValidationPipe({ transform: true }))
   async execute(@Body() request: SaveUserRequest): Promise<Output> {
     const output = await super.execute(request);
-    return output;
+
+    return { ...output, newValue: 100 };
   }
 }
